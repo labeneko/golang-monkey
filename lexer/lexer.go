@@ -8,6 +8,13 @@ type Lexer struct {
 	ch           byte // 現在検査中の文字
 }
 
+// New はinputをもとにLexerを生成し、一文字読み取ったLexerを返す
+func New(input string) *Lexer {
+	l := &Lexer{input: input}
+	l.readChar()
+	return l
+}
+
 func (l *Lexer) readChar() {
 	if l.readPosition >= len(l.input) {
 		// 入力が終端に達している場合、ファイルの終わりを示すために"NULL"
