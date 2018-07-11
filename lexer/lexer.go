@@ -7,3 +7,15 @@ type Lexer struct {
 	readPosition int  // これから読み込む位置（現在の文字の次）
 	ch           byte // 現在検査中の文字
 }
+
+func (l *Lexer) readChar() {
+	if l.readPosition >= len(l.input) {
+		// 入力が終端に達している場合、ファイルの終わりを示すために"NULL"
+		// を表す0を設定する
+		l.ch = 0
+	} else {
+		l.ch = l.input[l.readPosition]
+	}
+	l.position = l.readPosition
+	l.readPosition++
+}
