@@ -44,3 +44,17 @@ const (
 	// LET はLETキーワード
 	LET = "LET"
 )
+
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+// LookupIdent は渡された識別子がキーワードであればTokenType
+// 定数を返す。そうでなければtoken.IDENTを返す。
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
