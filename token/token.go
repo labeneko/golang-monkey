@@ -24,6 +24,18 @@ const (
 	ASSIGN = "="
 	// PLUS は+演算子
 	PLUS = "+"
+	// MINUS は-演算子
+	MINUS = "-"
+	// BANG は!演算子
+	BANG = "!"
+	// ASTERISK は*演算子
+	ASTERISK = "*"
+	// SLASH は/演算子
+	SLASH = "/"
+	// LT は<演算子
+	LT = "<"
+	// GT は>演算子
+	GT = ">"
 
 	// COMMA はデリミタ（,）
 	COMMA = ","
