@@ -55,11 +55,26 @@ const (
 	FUNCTION = "FUNCTION"
 	// LET はLETキーワード
 	LET = "LET"
+	// TRUE はTRUEキーワード
+	TRUE = "TRUE"
+	// FALSE はFALSEキーワード
+	FALSE = "FALSE"
+	// IF はIFキーワード
+	IF = "IF"
+	// ELSE はELSEキーワード
+	ELSE = "ELSE"
+	// RETURN はRETURNキーワード
+	RETURN = "RETURN"
 )
 
 var keywords = map[string]TokenType{
-	"fn":  FUNCTION,
-	"let": LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"else":   ELSE,
+	"return": RETURN,
 }
 
 // LookupIdent は渡された識別子がキーワードであればTokenType
