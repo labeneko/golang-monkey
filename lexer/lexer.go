@@ -84,6 +84,17 @@ func newToken(tokenType token.TokenType, ch byte) token.Token {
 	return token.Token{Type: tokenType, Literal: string(ch)}
 }
 
+// peekChar は先読みし、読み込み位置を表すreadPositionは+1しない
+func (l *Lexer) peekChar() byte {
+	if l.readPosition >= len(l.input) {
+		// 入力が終端に達している場合、ファイルの終わりを示すために"NULL"
+		// を表す0を設定する
+		return 0
+	} else {
+		return l.input[l.readPosition]
+	}
+}
+
 func (l *Lexer) readChar() {
 	if l.readPosition >= len(l.input) {
 		// 入力が終端に達している場合、ファイルの終わりを示すために"NULL"
