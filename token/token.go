@@ -36,6 +36,10 @@ const (
 	LT = "<"
 	// GT は>演算子
 	GT = ">"
+	// EQ は==演算子
+	EQ = "=="
+	// NOT_EQ は!=演算子
+	NOT_EQ = "!="
 
 	// COMMA はデリミタ（,）
 	COMMA = ","
