@@ -17,3 +17,18 @@ type Expression interface {
 	Node
 	expressionNode()
 }
+
+// Program は構文解析器が生成するすべてのASTのルートノード
+type Program struct {
+	Statements []Statement
+}
+
+// TokenLiteral はノードが関連付けられているトークンのリテラル値を返す
+func (p *Program) TokenLiteral() string {
+	if len(p.Statements) > 0 {
+		return p.Statements[0].TokenLiteral()
+	} else {
+		return ""
+	}
+}
+
