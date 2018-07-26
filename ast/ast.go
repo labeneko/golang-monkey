@@ -1,5 +1,7 @@
 package ast
 
+import "github.com/miyohide/monkey/token"
+
 // Node はASTのすべてのノードが実装しなければならないインターフェイス
 type Node interface {
 	// ノードが関連付けられるトークンのリテラル値を返す
@@ -32,3 +34,21 @@ func (p *Program) TokenLiteral() string {
 	}
 }
 
+// LetStatement は束縛の識別子と値を保持するもの
+type LetStatement struct {
+	Token token.Token
+	Name  *Identifier
+	Value Expression
+}
+
+func (ls *LetStatement) statementNode()       {}
+func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
+
+// Identifier は束縛の識別子を保持する
+type Identifier struct {
+	Token token.Token
+	Value string
+}
+
+func (i *Identifier) expressionNode()      {}
+func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
