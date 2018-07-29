@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"fmt"
+
 	"github.com/miyohide/monkey/ast"
 	"github.com/miyohide/monkey/lexer"
 	"github.com/miyohide/monkey/token"
@@ -15,11 +17,16 @@ type Parser struct {
 	curToken token.Token
 	// 次のトークン
 	peekToken token.Token
+	// 入力に想定外のトークンに遭遇したときに入れる
+	errors []string
 }
 
 // New は新しく字句解析器を作成し、2つのトークンを読み込んだParserを返す
 func New(l *lexer.Lexer) *Parser {
-	p := &Parser{l: l}
+	p := &Parser{
+		l:      l,
+		errors: []string{},
+	}
 
 	// 2つトークンを読み込んでcurTokenとpeekTokenの両方をセット
 	p.nextToken()
@@ -92,4 +99,15 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 	} else {
 		return false
 	}
+}
+
+// Errors は現在のエラーの配列を返す
+func (p *Parser) Errors() []string {
+	return p.errors
+}
+
+func (p *Parser) peekError(t token.TokenType) {
+	msg := fmt.Sprintf("expected next token to be %s, got %s instead",
+		t, p.peekToken.Type)
+	p.errors = append(p.errors, msg)
 }
