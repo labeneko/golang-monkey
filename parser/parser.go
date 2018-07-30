@@ -96,9 +96,8 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 	if p.peekTokenIs(t) {
 		p.nextToken()
 		return true
-	} else {
-		return false
 	}
+	return false
 }
 
 // Errors は現在のエラーの配列を返す
