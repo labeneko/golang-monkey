@@ -41,7 +41,9 @@ type LetStatement struct {
 	Value Expression
 }
 
-func (ls *LetStatement) statementNode()       {}
+func (ls *LetStatement) statementNode() {}
+
+// TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
 
 // Identifier は束縛の識別子を保持する
@@ -50,7 +52,9 @@ type Identifier struct {
 	Value string
 }
 
-func (i *Identifier) expressionNode()      {}
+func (i *Identifier) expressionNode() {}
+
+// TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
 
 // ReturnStatement はreturn文の構造を保持するもの
