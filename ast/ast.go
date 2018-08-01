@@ -52,3 +52,14 @@ type Identifier struct {
 
 func (i *Identifier) expressionNode()      {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+
+// ReturnStatement はreturn文の構造を保持するもの
+type ReturnStatement struct {
+	Token       token.Token // 'return'トークン
+	ReturnValue Expression  // 戻りとなる式を保持するフィールド
+}
+
+func (rs *ReturnStatement) statementNode() {}
+
+// TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
+func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
