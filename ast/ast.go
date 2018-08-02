@@ -67,3 +67,14 @@ func (rs *ReturnStatement) statementNode() {}
 
 // TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
 func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
+
+// ExpressionStatement は「x + 10;」のような四季だけからなる行を保持するもの
+type ExpressionStatement struct {
+	Token      token.Token // 式の最初のトークン
+	Expression Expression
+}
+
+func (es *ExpressionStatement) statementNode() {}
+
+// TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
+func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
