@@ -1,11 +1,17 @@
 package ast
 
-import "github.com/miyohide/monkey/token"
+import (
+	"bytes"
+
+	"github.com/miyohide/monkey/token"
+)
 
 // Node はASTのすべてのノードが実装しなければならないインターフェイス
 type Node interface {
 	// ノードが関連付けられるトークンのリテラル値を返す
 	TokenLiteral() string
+	// デバッグ用にASTノードを表示するためのメソッド
+	String() string
 }
 
 // Statement はノードの一種で文を表す
@@ -32,6 +38,15 @@ func (p *Program) TokenLiteral() string {
 	} else {
 		return ""
 	}
+}
+
+func (p *Program) String() string {
+	var out bytes.Buffer
+
+	for _, s := range p.Statements {
+		out.WriteString(s.String())
+	}
+	return out.String()
 }
 
 // LetStatement は束縛の識別子と値を保持するもの
