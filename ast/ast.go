@@ -61,6 +61,22 @@ func (ls *LetStatement) statementNode() {}
 // TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
 
+func (ls *LetStatement) String() string {
+	var out bytes.Buffer
+
+	out.WriteString(ls.TokenLiteral() + " ")
+	out.WriteString(ls.Name.String())
+	out.WriteString(" = ")
+
+	if ls.Value != nil {
+		out.WriteString(ls.Value.String())
+	}
+
+	out.WriteString(";")
+
+	return out.String()
+}
+
 // Identifier は束縛の識別子を保持する
 type Identifier struct {
 	Token token.Token
@@ -71,6 +87,8 @@ func (i *Identifier) expressionNode() {}
 
 // TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+
+func (i *Identifier) String() string { return i.Value }
 
 // ReturnStatement はreturn文の構造を保持するもの
 type ReturnStatement struct {
@@ -83,6 +101,20 @@ func (rs *ReturnStatement) statementNode() {}
 // TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
 func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
 
+func (rs *ReturnStatement) String() string {
+	var out bytes.Buffer
+
+	out.WriteString(rs.TokenLiteral() + " ")
+
+	if rs.ReturnValue != nil {
+		out.WriteString(rs.ReturnValue.String())
+	}
+
+	out.WriteString(";")
+
+	return out.String()
+}
+
 // ExpressionStatement は「x + 10;」のような式だけからなる行を保持するもの
 type ExpressionStatement struct {
 	Token      token.Token // 式の最初のトークン
@@ -93,3 +125,10 @@ func (es *ExpressionStatement) statementNode() {}
 
 // TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
 func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
+
+func (es *ExpressionStatement) String() string {
+	if es.Expression != nil {
+		return es.Expression.String()
+	}
+	return ""
+}
