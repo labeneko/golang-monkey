@@ -19,6 +19,9 @@ type Parser struct {
 	peekToken token.Token
 	// 入力に想定外のトークンに遭遇したときに入れる
 	errors []string
+
+	prefixParseFns map[token.TokenType]prefixParseFn
+	infixParseFns  map[token.TokenType]infixParseFn
 }
 
 // New は新しく字句解析器を作成し、2つのトークンを読み込んだParserを返す
