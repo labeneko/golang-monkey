@@ -128,3 +128,18 @@ func (p *Parser) parseReturnStatement() *ast.ReturnStatement {
 	}
 	return stmt
 }
+
+type (
+	// prefixParseFn は前置構文解析関数
+	prefixParseFn func() ast.Expression
+	// infixParseFn は中置構文解析関数
+	infixParseFn func() ast.Expression
+)
+
+func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
+	p.prefixParseFns[tokenType] = fn
+}
+
+func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
+	p.infixParseFns[tokenType] = fn
+}
