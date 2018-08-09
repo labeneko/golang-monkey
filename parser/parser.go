@@ -8,6 +8,18 @@ import (
 	"github.com/miyohide/monkey/token"
 )
 
+// 優先順位の定義
+const (
+	_ int = iota
+	LOWEST
+	EQUALS      // ==
+	LESSGREATER // > or <
+	SUM         // +
+	PRODUCT     // *
+	PREFIX      // -X or !X
+	CALL        // myFunction(X)
+)
+
 // Parser は字句解析器インスタンスへのポインタと2つのトークンを持つ型
 type Parser struct {
 	// 字句解析器インスタンスへのポインタ
