@@ -43,6 +43,9 @@ func New(l *lexer.Lexer) *Parser {
 		errors: []string{},
 	}
 
+	p.prefixParseFns = make(map[token.TokenType]prefixParseFn)
+	p.registerPrefix(token.IDENT, p.parseIdentifier)
+
 	// 2つトークンを読み込んでcurTokenとpeekTokenの両方をセット
 	p.nextToken()
 	p.nextToken()
@@ -54,6 +57,10 @@ func New(l *lexer.Lexer) *Parser {
 func (p *Parser) nextToken() {
 	p.curToken = p.peekToken
 	p.peekToken = p.l.NextToken()
+}
+
+func (p *Parser) parseIdentifier() ast.Expression {
+	return &ast.Identifier{Token: p.curToken, Value: p.curToken.Literal}
 }
 
 // ParseProgram はプログラムをParseする関数
