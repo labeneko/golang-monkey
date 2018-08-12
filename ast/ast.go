@@ -132,3 +132,15 @@ func (es *ExpressionStatement) String() string {
 	}
 	return ""
 }
+
+// IntegerLiteral は整数リテラル
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
+func (il *IntegerLiteral) expressionNode() {}
+
+// TokenLiteral はノードが関連付けられるトークンのリテラル値を返す
+func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
+func (il *IntegerLiteral) String() string       { return il.Token.Literal }
