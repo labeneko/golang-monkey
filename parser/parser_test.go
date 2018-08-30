@@ -255,7 +255,7 @@ func TestParsingInfixExpressions(t *testing.T) {
 
 		if len(program.Statements) != 1 {
 			t.Fatalf("program.Statements does not contain %d statements. got=%d\n",
-				l, len(program.Statements))
+				1, len(program.Statements))
 		}
 
 		stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
