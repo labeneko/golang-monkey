@@ -197,7 +197,7 @@ type (
 	// prefixParseFn は前置構文解析関数
 	prefixParseFn func() ast.Expression
 	// infixParseFn は中置構文解析関数
-	infixParseFn func() ast.Expression
+	infixParseFn func(ast.Expression) ast.Expression
 )
 
 func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
