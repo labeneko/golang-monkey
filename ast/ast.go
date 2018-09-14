@@ -188,7 +188,7 @@ func (oe *InfixExpression) String() string {
 // Boolean は真偽値のAST表現
 type Boolean struct {
 	Token token.Token
-	value bool
+	Value bool
 }
 
 func (b *Boolean) expressionNode()      {}
