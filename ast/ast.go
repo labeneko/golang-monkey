@@ -201,7 +201,7 @@ type IfExpression struct {
 	// Condition は条件を指す
 	Condition Expression
 	// Consequence は条件のconsequence部分を指す
-	Cosequence *BlockStatement
+	Consequence *BlockStatement
 	// Alternative は条件のalternative部分を指す
 	Alternative *BlockStatement
 }
