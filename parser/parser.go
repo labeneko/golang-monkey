@@ -303,3 +303,28 @@ func (p *Parser) parseGroupedExpression() ast.Expression {
 	}
 	return exp
 }
+
+func (p *Parser) parseIfExpression() ast.Expression {
+	expression := &ast.IfExpression{Token: p.curToken}
+	// ifの直後には「(」が必要
+	if !p.expectPeek(token.LPAREN) {
+		return nil
+	}
+
+	p.nextToken()
+	expression.Condition = p.parseExpression(LOWEST)
+
+	// 条件式の直後には「)」が必要
+	if !p.expectPeek(token.RPAREN) {
+		return nil
+	}
+
+	// ブロック分の開始を表す「{」が必要
+	if !p.expectPeek(token.LBRACE) {
+		return nil
+	}
+
+	expression.Consequence = p.parseBlockStatement()
+
+	return expression
+}
