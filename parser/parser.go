@@ -257,6 +257,7 @@ var precedences = map[token.TokenType]int{
 	token.MINUS:    SUM,
 	token.SLASH:    PRODUCT,
 	token.ASTERISK: PRODUCT,
+	token.LPAREN:   CALL,
 }
 
 // peekPrecedence はp.peekTokenのトークンタイプに対応している優先順位を返す
