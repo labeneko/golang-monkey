@@ -5,6 +5,13 @@ import (
 	"github.com/miyohide/monkey/object"
 )
 
+var (
+	// 毎回TRUE/FALSEを生成するのは無駄なので、
+	// 定数を作っておいてそれを参照する形にする。
+	TRUE  = &object.Boolean{Value: true}
+	FALSE = &object.Boolean{Value: false}
+)
+
 func Eval(node ast.Node) object.Object {
 	switch node := node.(type) {
 	case *ast.Program:
@@ -14,9 +21,15 @@ func Eval(node ast.Node) object.Object {
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
 	case *ast.Boolean:
-		return &object.Boolean{Value: node.Value}
+		return nativeBoolToBooleanObject(node.Value)
 	}
 	return nil
+}
+func nativeBoolToBooleanObject(input bool) object.Object {
+	if input {
+		return TRUE
+	}
+	return FALSE
 }
 
 func evalStatements(stmts []ast.Statement) object.Object {
