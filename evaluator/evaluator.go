@@ -33,10 +33,13 @@ func evalPrefixExpression(operator string, right object.Object) object.Object {
 	switch operator {
 	case "!":
 		return evalBanOperatorExpression(right)
+	case "-":
+		return evalMinusPrefixOperatorExpression(right)
 	default:
 		return NULL
 	}
 }
+
 func evalBanOperatorExpression(right object.Object) object.Object {
 	switch right {
 	case TRUE:
@@ -49,6 +52,17 @@ func evalBanOperatorExpression(right object.Object) object.Object {
 		return FALSE
 	}
 }
+
+func evalMinusPrefixOperatorExpression(right object.Object) object.Object {
+	// オペランドが整数かどうかのチェック
+	if right.Type() != object.INTEGER_OBJ {
+		return NULL
+	}
+
+	value := right.(*object.Integer).Value
+	return &object.Integer{Value: -value}
+}
+
 func nativeBoolToBooleanObject(input bool) object.Object {
 	if input {
 		return TRUE
