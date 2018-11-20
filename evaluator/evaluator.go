@@ -159,19 +159,6 @@ func nativeBoolToBooleanObject(input bool) object.Object {
 	return FALSE
 }
 
-func evalStatements(stmts []ast.Statement) object.Object {
-	var result object.Object
-
-	for _, statement := range stmts {
-		result = Eval(statement)
-
-		if returnValue, ok := result.(*object.ReturnValue); ok {
-			return returnValue.Value
-		}
-	}
-	return result
-}
-
 func evalProgram(program *ast.Program) object.Object {
 	var result object.Object
 
