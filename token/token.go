@@ -69,6 +69,8 @@ const (
 	ELSE = "ELSE"
 	// RETURN はRETURNキーワード
 	RETURN = "RETURN"
+	// STRING はSTRINGキーワード
+	STRING = "STRING"
 )
 
 var keywords = map[string]TokenType{
