@@ -79,6 +79,8 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 			return args[0]
 		}
 		return applyFunction(function, args)
+	case *ast.StringLiteral:
+		return &object.String{Value: node.Value}
 	}
 	return nil
 }
@@ -242,7 +244,7 @@ func evalIdentifier(node *ast.Identifier, env *object.Environment) object.Object
 func evalExpressions(
 	exps []ast.Expression,
 	env *object.Environment,
-	) []object.Object {
+) []object.Object {
 	var result []object.Object
 
 	for _, e := range exps {
@@ -268,14 +270,14 @@ func applyFunction(fn object.Object, args []object.Object) object.Object {
 func extendFunctionEnv(
 	fn *object.Function,
 	args []object.Object,
-	) *object.Environment {
-		env := object.NewEnclosedEnvironment(fn.Env)
+) *object.Environment {
+	env := object.NewEnclosedEnvironment(fn.Env)
 
-		for paramIdx, param := range fn.Parameters {
-			env.Set(param.Value, args[paramIdx])
-		}
+	for paramIdx, param := range fn.Parameters {
+		env.Set(param.Value, args[paramIdx])
+	}
 
-		return env
+	return env
 }
 
 func unwrapReturnValue(obj object.Object) object.Object {
