@@ -54,6 +54,10 @@ const (
 	LBRACE = "{"
 	// RBRACE は右中括弧
 	RBRACE = "}"
+	// LBRACKET は左大括弧
+	LBRACKET = "["
+	// RBRACKET は右大括弧
+	RBRACKET = "]"
 
 	// FUNCTION はFUNCTIONキーワード
 	FUNCTION = "FUNCTION"
