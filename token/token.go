@@ -75,6 +75,8 @@ const (
 	RETURN = "RETURN"
 	// STRING はSTRINGキーワード
 	STRING = "STRING"
+	// COLON はコロン（:）
+	COLON = ":"
 )
 
 var keywords = map[string]TokenType{
