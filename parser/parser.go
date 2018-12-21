@@ -19,7 +19,6 @@ const (
 	PRODUCT     // *
 	PREFIX      // -X or !X
 	CALL        // myFunction(X)
-	INDEX       // array[index]
 )
 
 // Parser は字句解析器インスタンスへのポインタと2つのトークンを持つ型
@@ -267,7 +266,6 @@ var precedences = map[token.TokenType]int{
 	token.SLASH:    PRODUCT,
 	token.ASTERISK: PRODUCT,
 	token.LPAREN:   CALL,
-	token.LBRACKET: INDEX,
 }
 
 // peekPrecedence はp.peekTokenのトークンタイプに対応している優先順位を返す
