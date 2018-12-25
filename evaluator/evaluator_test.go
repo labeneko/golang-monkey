@@ -335,6 +335,8 @@ func TestBuiltinFunctions(t *testing.T) {
 		{`len([1, 2, 3])`, 3},
 		{`len([1, 2, 3, 4])`, 4},
 		{`len([])`, 0},
+		{`first([])`, NULL},
+		{`first([1, 2, 3])`, 1},
 	}
 
 	for _, tt := range tests {
