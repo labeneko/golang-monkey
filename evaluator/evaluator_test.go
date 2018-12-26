@@ -335,9 +335,9 @@ func TestBuiltinFunctions(t *testing.T) {
 		{`len([1, 2, 3])`, 3},
 		{`len([1, 2, 3, 4])`, 4},
 		{`len([])`, 0},
-		{`first([])`, NULL},
+		{`first([])`, nil},
 		{`first([1, 2, 3])`, 1},
-		{`last([])`, NULL},
+		{`last([])`, nil},
 		{`last([1, 2, 3])`, 3},
 	}
 
