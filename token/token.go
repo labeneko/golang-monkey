@@ -58,6 +58,8 @@ const (
 	LBRACKET = "["
 	// RBRACKET は右大括弧
 	RBRACKET = "]"
+	// COLON はコロン（:）
+	COLON = ":"
 
 	// FUNCTION はFUNCTIONキーワード
 	FUNCTION = "FUNCTION"
