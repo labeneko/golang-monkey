@@ -5,5 +5,5 @@ workflow "Test" {
 
 action "test" {
   uses = "docker://golang:latest"
-  runs = "go version"
+  runs = "go test ./..."
 }
