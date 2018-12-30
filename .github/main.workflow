@@ -4,6 +4,6 @@ workflow "Test" {
 }
 
 action "test" {
-  uses = "./say_hello.sh"
-  args = "\"Hello World\""
+  uses = "docker://golang:latest"
+  runs = "go version"
 }
