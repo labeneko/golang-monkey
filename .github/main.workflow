@@ -4,6 +4,5 @@ workflow "Test" {
 }
 
 action "test" {
-  uses = "docker://golang:latest"
-  runs = "go test ./..."
+  uses = "./.github/actions/golang"
 }
