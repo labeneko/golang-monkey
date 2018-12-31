@@ -6,6 +6,4 @@ mkdir -p ${APP_DIR} && cp -r ./ ${APP_DIR} && cd ${APP_DIR}
  
 echo "#######################"
 echo "# Running Test"
-pwd
-ls -lR .
 go test ./...
