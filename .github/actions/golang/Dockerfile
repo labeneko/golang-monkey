@@ -1,4 +1,4 @@
-FROM golang:1.11.4
+FROM golang:latest
  
 COPY entrypoint.sh /entrypoint.sh
  
