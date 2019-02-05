@@ -77,6 +77,8 @@ const (
 	RETURN = "RETURN"
 	// STRING はSTRINGキーワード
 	STRING = "STRING"
+	// MACRO はMACROキーワード
+	MACRO = "MACRO"
 )
 
 var keywords = map[string]TokenType{
@@ -87,6 +89,7 @@ var keywords = map[string]TokenType{
 	"if":     IF,
 	"else":   ELSE,
 	"return": RETURN,
+	"macro":  MACRO,
 }
 
 // LookupIdent は渡された識別子がキーワードであればTokenType
