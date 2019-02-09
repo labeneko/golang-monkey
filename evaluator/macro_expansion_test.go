@@ -87,7 +87,7 @@ func TestExpandMacros(t *testing.T) {
 			`
              let reverse = macro(a, b) { quote(unquote(b) - unquote(a)); };
 
-             reserse(2 + 2, 10 - 5);
+             reverse(2 + 2, 10 - 5);
              `,
 			`(10 - 5) - (2 + 2)`,
 		},
