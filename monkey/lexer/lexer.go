@@ -20,13 +20,16 @@ func (l *Lexer) readChar() {
 		l.ch = 0
 	} else {
 		l.ch = l.input[l.readPosition]
-		l.readPosition += 1
 	}
+	// positionを次に進める
+    l.position = l.readPosition
+    // readpositonを次に進める
+    l.readPosition += 1
 }
 
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
-
+	
 	l.skipWhitespace()
 
 	switch l.ch {
@@ -53,6 +56,10 @@ func (l *Lexer) NextToken() token.Token {
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier()          //英文字の部分を切り取って、tokのLiteralフィールドにセット
 			tok.Type = token.LookupIdent(tok.Literal) //token.LookupIdent()を使って、それがキーワードか識別子か判定し、対応するtokenTypeをセットする
+			return tok
+		} else if isDigit(l.ch) {
+			tok.Type = token.INT
+			tok.Literal = l.readNumber()
 			return tok
 		} else {
 			tok = newToken(token.ILLEGAL, l.ch)
